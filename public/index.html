@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Placement Practice Quiz - timed MCQ practice in Aptitude, Operating Systems, DBMS, Computer Networks and Programming for college placement preparation.">
+  <meta name="theme-color" content="#1d4ed8">
+  <title>Placement Practice Quiz</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/" id="brand-link">
+        <span class="brand-mark" aria-hidden="true">PQ</span>
+        <span class="brand-name">Placement Practice Quiz</span>
+      </a>
+      <div class="header-account"><p class="header-note">Aptitude &middot; OS &middot; DBMS &middot; CN &middot; Programming</p><span id="account-name" class="account-name" hidden></span><button id="logout-button" class="btn btn-ghost btn-sm" type="button" hidden>Sign out</button></div>
+    </div>
+  </header>
+
+  <main id="main" class="container" tabindex="-1">
+    <!-- Global status / error banner -->
+    <div id="global-alert" class="alert alert-error" role="alert" hidden>
+      <div class="alert-body">
+        <p class="alert-title" id="global-alert-title">Something went wrong</p>
+        <p class="alert-text" id="global-alert-text"></p>
+      </div>
+      <button type="button" class="btn btn-secondary btn-sm" id="global-alert-retry" hidden>Try again</button>
+    </div>
+
+    <section id="view-auth" class="view auth-view" aria-labelledby="auth-title">
+      <div class="auth-intro"><p class="eyebrow">Your placement prep, saved</p><h1 id="auth-title">Welcome back</h1><p>Sign in to practise quizzes and keep your results in one place.</p></div>
+      <form id="auth-form" class="card auth-card" novalidate>
+        <h2 id="auth-form-title">Sign in</h2><p id="auth-error" class="auth-error" role="alert" hidden></p>
+        <label class="field" id="auth-name-field" hidden><span class="section-title">Your name</span><input class="select" id="auth-name" name="name" autocomplete="name" minlength="2" maxlength="80"></label>
+        <label class="field"><span class="section-title">Email address</span><input class="select" id="auth-email" name="email" type="email" autocomplete="email" required maxlength="254"></label>
+        <label class="field"><span class="section-title">Password</span><input class="select" id="auth-password" name="password" type="password" autocomplete="current-password" required minlength="8" maxlength="128"></label>
+        <button id="auth-submit" class="btn btn-primary btn-lg" type="submit">Sign in</button>
+        <p class="auth-switch"><span id="auth-switch-copy">New here?</span> <button id="auth-switch" class="link-button" type="button">Create an account</button></p>
+      </form>
+    </section>
+
+    <!-- ================= HOME VIEW ================= -->
+    <section id="view-home" class="view" aria-labelledby="home-title" hidden>
+      <div class="hero">
+        <p class="eyebrow">Campus placement preparation</p>
+        <h1 id="home-title" tabindex="-1">Placement Practice Quiz</h1>
+        <p class="lead">
+          Practise timed multiple-choice questions in aptitude and core computer science subjects.
+          Pick a subject, set your timer, and get an instant, server-checked score with detailed
+          explanations for every question.
+        </p>
+        <ul class="hero-stats" aria-label="Question bank summary">
+          <li><span class="hero-stat-value" id="stat-total-questions">&ndash;</span><span class="hero-stat-label">Questions</span></li>
+          <li><span class="hero-stat-value" id="stat-total-categories">&ndash;</span><span class="hero-stat-label">Subjects</span></li>
+          <li><span class="hero-stat-value">4</span><span class="hero-stat-label">Options each</span></li>
+        </ul>
+      </div>
+
+      <form id="start-form" class="card setup-card" novalidate>
+        <fieldset class="category-fieldset">
+          <legend class="section-title">1. Choose a subject</legend>
+          <div id="category-loading" class="loading-row" role="status">
+            <span class="spinner" aria-hidden="true"></span>
+            <span>Loading subjects&hellip;</span>
+          </div>
+          <div id="category-grid" class="category-grid"></div>
+        </fieldset>
+
+        <div class="settings-row">
+          <div class="field">
+            <label for="question-count" class="section-title">2. Number of questions</label>
+            <select id="question-count" class="select" disabled></select>
+            <p class="field-hint" id="question-count-hint"></p>
+          </div>
+          <div class="field">
+            <label for="duration" class="section-title">3. Time limit</label>
+            <select id="duration" class="select" disabled></select>
+            <p class="field-hint">The quiz is submitted automatically when time runs out.</p>
+          </div>
+        </div>
+
+        <div class="setup-actions">
+          <button type="submit" class="btn btn-primary btn-lg" id="start-button" disabled>Start Quiz</button>
+          <p class="field-hint" id="start-summary" aria-live="polite"></p>
+        </div>
+      </form>
+      <section class="card history-card" aria-labelledby="history-title"><h2 id="history-title">Recent quiz results</h2><p id="history-empty" class="field-hint">Your submitted quizzes will appear here.</p><ol id="history-list" class="history-list"></ol></section>
+    </section>
+
+    <!-- ================= QUIZ VIEW ================= -->
+    <section id="view-quiz" class="view" aria-labelledby="quiz-title" hidden>
+      <div class="quiz-toolbar">
+        <div>
+          <p class="eyebrow" id="quiz-category-label"></p>
+          <h1 id="quiz-title" class="quiz-counter" tabindex="-1">Question 1 of 10</h1>
+        </div>
+        <div class="toolbar-actions">
+          <div class="timer" id="timer" role="timer" aria-label="Time remaining">
+            <svg class="timer-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <circle cx="12" cy="13" r="8" fill="none" stroke="currentColor" stroke-width="2"/>
+              <path d="M12 9v4l2.5 2.5M9 2h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <span id="timer-value">10:00</span>
+          </div>
+          <button type="button" class="btn btn-ghost btn-sm" id="quit-button">Quit quiz</button>
+        </div>
+      </div>
+
+      <div class="progress-wrap">
+        <div class="progress" id="progress" role="progressbar" aria-label="Quiz progress" aria-valuemin="0" aria-valuemax="10" aria-valuenow="1">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <p class="progress-text" id="progress-text">0 of 10 answered</p>
+      </div>
+
+      <div id="timer-warning" class="alert alert-warning" role="alert" hidden>
+        <div class="alert-body">
+          <p class="alert-title">Time is almost up</p>
+          <p class="alert-text" id="timer-warning-text">Your quiz will be submitted automatically when the timer reaches zero.</p>
+        </div>
+      </div>
+
+      <article class="card question-card" id="question-card" aria-labelledby="question-text">
+        <div class="question-meta">
+          <span class="tag" id="question-category"></span>
+          <span class="tag tag-muted" id="question-difficulty"></span>
+        </div>
+        <h2 class="question-text" id="question-text"></h2>
+        <fieldset class="options" id="options" aria-labelledby="question-text">
+          <legend class="sr-only">Choose one answer</legend>
+          <div id="options-list" class="options-list"></div>
+        </fieldset>
+      </article>
+
+      <div class="quiz-nav">
+        <button type="button" class="btn btn-secondary" id="prev-button">
+          <span aria-hidden="true">&larr;</span> Previous Question
+        </button>
+        <p class="nav-hint" id="nav-hint" aria-live="polite"></p>
+        <button type="button" class="btn btn-primary" id="next-button" aria-describedby="nav-hint">
+          Next Question <span aria-hidden="true">&rarr;</span>
+        </button>
+        <button type="button" class="btn btn-success" id="submit-button" aria-describedby="nav-hint" hidden>
+          Submit Quiz
+        </button>
+      </div>
+      <p class="kbd-hint">Tip: press keys <kbd>1</kbd>&ndash;<kbd>4</kbd> or <kbd>A</kbd>&ndash;<kbd>D</kbd> to choose an option.</p>
+    </section>
+
+    <!-- ================= RESULTS VIEW ================= -->
+    <section id="view-results" class="view" aria-labelledby="results-title" hidden>
+      <div class="card results-summary">
+        <div class="score-ring" id="score-ring" aria-hidden="true">
+          <span class="score-ring-value" id="result-percentage-ring">0%</span>
+        </div>
+        <div class="results-headline">
+          <p class="eyebrow" id="result-category"></p>
+          <h1 id="results-title" tabindex="-1">Your results</h1>
+          <p class="performance-title" id="result-performance-title"></p>
+          <p class="performance-message" id="result-performance-message"></p>
+          <p class="notice" id="result-notice" hidden></p>
+        </div>
+      </div>
+
+      <dl class="stats-grid">
+        <div class="stat"><dt>Total questions</dt><dd id="result-total">0</dd></div>
+        <div class="stat"><dt>Attempted</dt><dd id="result-attempted">0</dd></div>
+        <div class="stat stat-success"><dt>Correct</dt><dd id="result-correct">0</dd></div>
+        <div class="stat stat-danger"><dt>Incorrect</dt><dd id="result-incorrect">0</dd></div>
+        <div class="stat"><dt>Final score</dt><dd id="result-score">0 / 0</dd></div>
+        <div class="stat"><dt>Percentage</dt><dd id="result-percentage">0%</dd></div>
+        <div class="stat"><dt>Unanswered</dt><dd id="result-unanswered">0</dd></div>
+        <div class="stat"><dt>Time taken</dt><dd id="result-time">0:00</dd></div>
+      </dl>
+
+      <div class="results-actions">
+        <button type="button" class="btn btn-primary" id="retry-button">Retry the Same Quiz</button>
+        <button type="button" class="btn btn-secondary" id="home-button">Return to Home</button>
+      </div>
+
+      <section class="review" aria-labelledby="review-title">
+        <div class="review-header">
+          <h2 id="review-title">Question-by-question review</h2>
+          <div class="filter-group" role="group" aria-label="Filter review">
+            <button type="button" class="filter-btn" data-filter="all" aria-pressed="true">All</button>
+            <button type="button" class="filter-btn" data-filter="correct" aria-pressed="false">Correct</button>
+            <button type="button" class="filter-btn" data-filter="incorrect" aria-pressed="false">Incorrect</button>
+            <button type="button" class="filter-btn" data-filter="unanswered" aria-pressed="false">Unanswered</button>
+          </div>
+        </div>
+        <ol class="review-list" id="review-list"></ol>
+        <p class="empty-state" id="review-empty" hidden>No questions match this filter.</p>
+      </section>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Scores are calculated on the server. Your quiz results are saved to your account.</p>
+    </div>
+  </footer>
+
+  <!-- Shared confirmation dialog -->
+  <dialog id="confirm-dialog" class="dialog" aria-labelledby="dialog-title" aria-describedby="dialog-message">
+    <form method="dialog" class="dialog-inner">
+      <h2 id="dialog-title" class="dialog-title"></h2>
+      <p id="dialog-message" class="dialog-message"></p>
+      <div class="dialog-actions">
+        <button type="submit" value="cancel" class="btn btn-secondary" id="dialog-cancel">Cancel</button>
+        <button type="submit" value="confirm" class="btn btn-primary" id="dialog-confirm">Confirm</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Screen reader announcements -->
+  <div id="sr-announcer" class="sr-only" aria-live="assertive" aria-atomic="true"></div>
+</body>
+</html>

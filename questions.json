@@ -1,0 +1,516 @@
+{
+  "categories": [
+    {
+      "id": "aptitude",
+      "name": "Aptitude",
+      "shortName": "APT",
+      "description": "Quantitative reasoning: speed, ratios, percentages, work, probability and series."
+    },
+    {
+      "id": "os",
+      "name": "Operating Systems",
+      "shortName": "OS",
+      "description": "Processes, threads, scheduling, deadlocks, memory management and paging."
+    },
+    {
+      "id": "dbms",
+      "name": "DBMS",
+      "shortName": "DB",
+      "description": "SQL, keys, joins, normalization, transactions and indexing."
+    },
+    {
+      "id": "cn",
+      "name": "Computer Networks",
+      "shortName": "CN",
+      "description": "OSI model, TCP/IP, addressing, subnetting and application protocols."
+    },
+    {
+      "id": "programming",
+      "name": "Programming",
+      "shortName": "PR",
+      "description": "Data structures, algorithms, complexity, OOP and language fundamentals."
+    }
+  ],
+  "questions": [
+    {
+      "id": "APT-001",
+      "category": "aptitude",
+      "difficulty": "easy",
+      "question": "A train 150 metres long passes a telegraph pole in 15 seconds. What is the speed of the train in km/h?",
+      "options": ["36 km/h", "40 km/h", "45 km/h", "54 km/h"],
+      "correctIndex": 0,
+      "explanation": "Speed = distance / time = 150 / 15 = 10 m/s. Converting to km/h: 10 x 18/5 = 36 km/h."
+    },
+    {
+      "id": "APT-002",
+      "category": "aptitude",
+      "difficulty": "easy",
+      "question": "An article is bought for Rs. 400 and sold for Rs. 500. What is the profit percentage?",
+      "options": ["20%", "25%", "30%", "15%"],
+      "correctIndex": 1,
+      "explanation": "Profit = 500 - 400 = Rs. 100. Profit % = (100 / 400) x 100 = 25%. Profit percentage is always calculated on the cost price."
+    },
+    {
+      "id": "APT-003",
+      "category": "aptitude",
+      "difficulty": "medium",
+      "question": "A can complete a piece of work in 10 days and B can complete the same work in 15 days. In how many days can they complete it working together?",
+      "options": ["5 days", "7.5 days", "6 days", "8 days"],
+      "correctIndex": 2,
+      "explanation": "A's one-day work = 1/10, B's one-day work = 1/15. Together = 1/10 + 1/15 = 3/30 + 2/30 = 5/30 = 1/6. So they finish in 6 days."
+    },
+    {
+      "id": "APT-004",
+      "category": "aptitude",
+      "difficulty": "easy",
+      "question": "What is the simple interest on Rs. 5,000 at 8% per annum for 3 years?",
+      "options": ["Rs. 1,000", "Rs. 1,250", "Rs. 1,400", "Rs. 1,200"],
+      "correctIndex": 3,
+      "explanation": "Simple Interest = (P x R x T) / 100 = (5000 x 8 x 3) / 100 = Rs. 1,200."
+    },
+    {
+      "id": "APT-005",
+      "category": "aptitude",
+      "difficulty": "easy",
+      "question": "What is the average of the first 10 natural numbers?",
+      "options": ["5", "5.5", "6", "10"],
+      "correctIndex": 1,
+      "explanation": "The sum of the first n natural numbers is n(n + 1)/2 = 10 x 11 / 2 = 55. Average = 55 / 10 = 5.5."
+    },
+    {
+      "id": "APT-006",
+      "category": "aptitude",
+      "difficulty": "medium",
+      "question": "Find the next number in the series: 2, 6, 12, 20, 30, ?",
+      "options": ["42", "40", "44", "36"],
+      "correctIndex": 0,
+      "explanation": "The terms are n(n + 1): 1x2, 2x3, 3x4, 4x5, 5x6. The next term is 6x7 = 42. Equivalently, the differences 4, 6, 8, 10 increase by 2, so the next difference is 12."
+    },
+    {
+      "id": "APT-007",
+      "category": "aptitude",
+      "difficulty": "easy",
+      "question": "Two numbers are in the ratio 3 : 5 and their sum is 64. What is the larger number?",
+      "options": ["24", "32", "40", "48"],
+      "correctIndex": 2,
+      "explanation": "Let the numbers be 3x and 5x. Then 8x = 64, so x = 8. The larger number is 5 x 8 = 40."
+    },
+    {
+      "id": "APT-008",
+      "category": "aptitude",
+      "difficulty": "medium",
+      "question": "Two fair six-sided dice are rolled together. What is the probability that the sum of the numbers shown is 7?",
+      "options": ["5/36", "7/36", "1/12", "1/6"],
+      "correctIndex": 3,
+      "explanation": "There are 36 equally likely outcomes. The pairs that sum to 7 are (1,6), (2,5), (3,4), (4,3), (5,2), (6,1) - 6 outcomes. Probability = 6/36 = 1/6."
+    },
+    {
+      "id": "APT-009",
+      "category": "aptitude",
+      "difficulty": "medium",
+      "question": "What is the angle between the hour hand and the minute hand of a clock at 3:30?",
+      "options": ["90 degrees", "75 degrees", "60 degrees", "82.5 degrees"],
+      "correctIndex": 1,
+      "explanation": "Angle = |30H - 5.5M| = |30 x 3 - 5.5 x 30| = |90 - 165| = 75 degrees. At 3:30 the hour hand has moved halfway between 3 and 4."
+    },
+    {
+      "id": "APT-010",
+      "category": "aptitude",
+      "difficulty": "medium",
+      "question": "The price of an item is first increased by 20% and then decreased by 20%. What is the net change in its price?",
+      "options": ["No change", "4% increase", "4% decrease", "2% decrease"],
+      "correctIndex": 2,
+      "explanation": "Starting at 100: after a 20% increase it becomes 120; a 20% decrease of 120 is 24, giving 96. Net change = 4% decrease. Formula: x + y + xy/100 = 20 - 20 - 4 = -4%."
+    },
+    {
+      "id": "OS-001",
+      "category": "os",
+      "difficulty": "easy",
+      "question": "Which of the following CPU scheduling algorithms can lead to starvation of long processes?",
+      "options": ["First-Come, First-Served (FCFS)", "Round Robin (RR)", "Shortest Job First (SJF)", "None of these can cause starvation"],
+      "correctIndex": 2,
+      "explanation": "SJF always picks the shortest available job. If short jobs keep arriving, a long job may wait indefinitely (starvation). FCFS and Round Robin guarantee every process eventually gets the CPU."
+    },
+    {
+      "id": "OS-002",
+      "category": "os",
+      "difficulty": "easy",
+      "question": "Which of the following is NOT one of the four necessary conditions for a deadlock?",
+      "options": ["Mutual exclusion", "Preemption", "Hold and wait", "Circular wait"],
+      "correctIndex": 1,
+      "explanation": "The four Coffman conditions are mutual exclusion, hold and wait, NO preemption, and circular wait. Allowing preemption of resources actually breaks a deadlock condition."
+    },
+    {
+      "id": "OS-003",
+      "category": "os",
+      "difficulty": "medium",
+      "question": "The Banker's algorithm is primarily used for which purpose?",
+      "options": ["Deadlock prevention", "Deadlock detection", "Deadlock recovery", "Deadlock avoidance"],
+      "correctIndex": 3,
+      "explanation": "The Banker's algorithm checks whether granting a resource request keeps the system in a safe state. It grants requests only when safe, which is deadlock avoidance."
+    },
+    {
+      "id": "OS-004",
+      "category": "os",
+      "difficulty": "medium",
+      "question": "What best describes thrashing in an operating system?",
+      "options": [
+        "The system spends more time swapping pages in and out than executing processes",
+        "The CPU remains idle while waiting for I/O to complete",
+        "Two processes wait for each other to release resources",
+        "Cache hits greatly exceed cache misses"
+      ],
+      "correctIndex": 0,
+      "explanation": "Thrashing happens when processes do not have enough frames for their working sets, causing continuous page faults. The system then spends most of its time paging, and CPU utilisation drops sharply."
+    },
+    {
+      "id": "OS-005",
+      "category": "os",
+      "difficulty": "medium",
+      "question": "Belady's anomaly, where increasing the number of page frames increases page faults, can occur with which page replacement algorithm?",
+      "options": ["LRU (Least Recently Used)", "Optimal", "FIFO (First-In, First-Out)", "None of these"],
+      "correctIndex": 2,
+      "explanation": "FIFO is not a stack algorithm, so adding frames can increase page faults for some reference strings. LRU and Optimal are stack algorithms and never exhibit Belady's anomaly."
+    },
+    {
+      "id": "OS-006",
+      "category": "os",
+      "difficulty": "easy",
+      "question": "A semaphore whose value can only be 0 or 1 is called a:",
+      "options": ["Counting semaphore", "Monitor", "Condition variable", "Binary semaphore"],
+      "correctIndex": 3,
+      "explanation": "A binary semaphore takes only the values 0 and 1 and is commonly used for mutual exclusion, similar to a mutex lock. A counting semaphore can take any non-negative integer value."
+    },
+    {
+      "id": "OS-007",
+      "category": "os",
+      "difficulty": "medium",
+      "question": "Which of the following is NOT shared among threads of the same process?",
+      "options": ["Heap memory", "Global variables", "Stack", "Open file descriptors"],
+      "correctIndex": 2,
+      "explanation": "Each thread has its own stack (and its own registers and program counter) so it can maintain its own function calls and local variables. The heap, global data, code and open files are shared across the process."
+    },
+    {
+      "id": "OS-008",
+      "category": "os",
+      "difficulty": "easy",
+      "question": "On success, what value does the fork() system call return in the newly created child process?",
+      "options": ["The child's process ID", "0", "-1", "The parent's process ID"],
+      "correctIndex": 1,
+      "explanation": "fork() returns 0 in the child process and the child's PID in the parent process. It returns -1 in the parent if process creation fails."
+    },
+    {
+      "id": "OS-009",
+      "category": "os",
+      "difficulty": "medium",
+      "question": "Paging as a memory management technique eliminates which type of fragmentation?",
+      "options": ["Internal fragmentation", "External fragmentation", "Both internal and external fragmentation", "Neither type of fragmentation"],
+      "correctIndex": 1,
+      "explanation": "Because any free frame can hold any page, paging removes external fragmentation. Internal fragmentation can still occur in the last page of a process if it does not fill the whole page."
+    },
+    {
+      "id": "OS-010",
+      "category": "os",
+      "difficulty": "easy",
+      "question": "In Round Robin scheduling, if the time quantum is made very large (larger than every CPU burst), the algorithm behaves like:",
+      "options": ["Shortest Job First", "Priority scheduling", "Multilevel queue scheduling", "First-Come, First-Served"],
+      "correctIndex": 3,
+      "explanation": "With a very large quantum, every process finishes its burst before being preempted, so processes simply run in arrival order - exactly like FCFS."
+    },
+    {
+      "id": "DB-001",
+      "category": "dbms",
+      "difficulty": "medium",
+      "question": "A relation is in 2NF and has no transitive dependency of a non-prime attribute on a candidate key. The relation is at least in:",
+      "options": ["1NF only", "2NF only", "3NF", "4NF"],
+      "correctIndex": 2,
+      "explanation": "3NF requires 2NF plus the removal of transitive dependencies of non-prime attributes on candidate keys. 4NF additionally deals with multivalued dependencies, which are not guaranteed here."
+    },
+    {
+      "id": "DB-002",
+      "category": "dbms",
+      "difficulty": "easy",
+      "question": "In the ACID properties of a transaction, what does the letter 'I' stand for?",
+      "options": ["Integrity", "Isolation", "Indexing", "Independence"],
+      "correctIndex": 1,
+      "explanation": "ACID stands for Atomicity, Consistency, Isolation and Durability. Isolation ensures concurrently executing transactions do not see each other's intermediate states."
+    },
+    {
+      "id": "DB-003",
+      "category": "dbms",
+      "difficulty": "medium",
+      "question": "Which SQL command removes all rows from a table quickly, without logging each row deletion individually, while keeping the table structure?",
+      "options": ["DELETE", "DROP", "ALTER", "TRUNCATE"],
+      "correctIndex": 3,
+      "explanation": "TRUNCATE deallocates the table's data pages instead of deleting rows one by one, and keeps the table definition. DELETE removes rows individually (and supports WHERE), while DROP removes the table itself."
+    },
+    {
+      "id": "DB-004",
+      "category": "dbms",
+      "difficulty": "easy",
+      "question": "Which statement about a primary key is correct?",
+      "options": [
+        "It can contain NULL values",
+        "It uniquely identifies each row and cannot contain NULL",
+        "A table can have several primary keys",
+        "It must always be an integer column"
+      ],
+      "correctIndex": 1,
+      "explanation": "A primary key must be unique and NOT NULL. A table has only one primary key (which may be composite), and it can be of any suitable data type, not just integers."
+    },
+    {
+      "id": "DB-005",
+      "category": "dbms",
+      "difficulty": "easy",
+      "question": "Which join returns all rows from the left table and only the matching rows from the right table?",
+      "options": ["LEFT OUTER JOIN", "INNER JOIN", "RIGHT OUTER JOIN", "CROSS JOIN"],
+      "correctIndex": 0,
+      "explanation": "A LEFT OUTER JOIN keeps every row of the left table; where no match exists in the right table, the right-side columns are filled with NULL."
+    },
+    {
+      "id": "DB-006",
+      "category": "dbms",
+      "difficulty": "easy",
+      "question": "Which SQL clause is used to filter groups after a GROUP BY has been applied?",
+      "options": ["WHERE", "ORDER BY", "DISTINCT", "HAVING"],
+      "correctIndex": 3,
+      "explanation": "WHERE filters individual rows before grouping, while HAVING filters the grouped results, typically using aggregate functions such as COUNT() or SUM()."
+    },
+    {
+      "id": "DB-007",
+      "category": "dbms",
+      "difficulty": "easy",
+      "question": "A foreign key in a table is a column (or set of columns) that:",
+      "options": [
+        "Must be unique in its own table",
+        "Is automatically indexed as the primary key",
+        "References the primary key or a unique key of another table",
+        "Can never contain NULL values"
+      ],
+      "correctIndex": 2,
+      "explanation": "A foreign key enforces referential integrity by referring to a primary (or unique) key in another table. It need not be unique and may be NULL unless constrained otherwise."
+    },
+    {
+      "id": "DB-008",
+      "category": "dbms",
+      "difficulty": "medium",
+      "question": "Table A has 5 rows and table B has 4 rows. How many rows does A CROSS JOIN B return?",
+      "options": ["9", "20", "5", "4"],
+      "correctIndex": 1,
+      "explanation": "A CROSS JOIN produces the Cartesian product, pairing every row of A with every row of B: 5 x 4 = 20 rows."
+    },
+    {
+      "id": "DB-009",
+      "category": "dbms",
+      "difficulty": "easy",
+      "question": "Which of the following is a DDL (Data Definition Language) command?",
+      "options": ["CREATE", "SELECT", "UPDATE", "GRANT"],
+      "correctIndex": 0,
+      "explanation": "DDL commands define or change schema objects: CREATE, ALTER, DROP, TRUNCATE. SELECT and UPDATE are DML commands, and GRANT is a DCL command."
+    },
+    {
+      "id": "DB-010",
+      "category": "dbms",
+      "difficulty": "medium",
+      "question": "What is the main benefit of creating an index on a frequently searched column?",
+      "options": [
+        "It reduces the storage space used by the table",
+        "It makes INSERT operations faster",
+        "It speeds up data retrieval for queries on that column",
+        "It automatically normalizes the table"
+      ],
+      "correctIndex": 2,
+      "explanation": "An index (often a B-tree) lets the database locate rows without scanning the whole table, speeding up reads. The trade-offs are extra storage and slower writes, because the index must be maintained."
+    },
+    {
+      "id": "CN-001",
+      "category": "cn",
+      "difficulty": "easy",
+      "question": "Which layer of the OSI model is responsible for routing packets between different networks?",
+      "options": ["Data Link layer", "Transport layer", "Network layer", "Session layer"],
+      "correctIndex": 2,
+      "explanation": "The Network layer (Layer 3) handles logical addressing (IP) and routing between networks. Routers operate at this layer."
+    },
+    {
+      "id": "CN-002",
+      "category": "cn",
+      "difficulty": "easy",
+      "question": "What is the default port number for HTTPS?",
+      "options": ["80", "443", "8080", "21"],
+      "correctIndex": 1,
+      "explanation": "HTTPS uses TCP port 443 by default. Port 80 is HTTP, 21 is FTP control, and 8080 is a common alternative HTTP port."
+    },
+    {
+      "id": "CN-003",
+      "category": "cn",
+      "difficulty": "easy",
+      "question": "Which of the following is a connectionless transport layer protocol?",
+      "options": ["TCP", "FTP", "SMTP", "UDP"],
+      "correctIndex": 3,
+      "explanation": "UDP sends datagrams without establishing a connection and without guaranteed delivery or ordering. TCP is connection-oriented, and FTP and SMTP are application protocols that run over TCP."
+    },
+    {
+      "id": "CN-004",
+      "category": "cn",
+      "difficulty": "easy",
+      "question": "What is the primary function of DNS (Domain Name System)?",
+      "options": [
+        "Translating domain names into IP addresses",
+        "Assigning IP addresses to hosts automatically",
+        "Encrypting web traffic",
+        "Translating IP addresses into MAC addresses"
+      ],
+      "correctIndex": 0,
+      "explanation": "DNS resolves human-readable names like example.com into IP addresses. Automatic IP assignment is done by DHCP, and IP-to-MAC resolution is done by ARP."
+    },
+    {
+      "id": "CN-005",
+      "category": "cn",
+      "difficulty": "easy",
+      "question": "Under classful addressing, the IPv4 address 192.168.1.10 belongs to which class?",
+      "options": ["Class A", "Class B", "Class C", "Class D"],
+      "correctIndex": 2,
+      "explanation": "Class C addresses have a first octet from 192 to 223. Since the first octet is 192, the address is Class C (and it is also in the private 192.168.0.0/16 range)."
+    },
+    {
+      "id": "CN-006",
+      "category": "cn",
+      "difficulty": "medium",
+      "question": "How many usable host addresses are available in a /24 IPv4 subnet?",
+      "options": ["256", "254", "255", "252"],
+      "correctIndex": 1,
+      "explanation": "A /24 leaves 8 host bits, giving 2^8 = 256 addresses. Subtracting the network address and the broadcast address leaves 256 - 2 = 254 usable hosts."
+    },
+    {
+      "id": "CN-007",
+      "category": "cn",
+      "difficulty": "medium",
+      "question": "Which device operates at the Data Link layer and forwards frames based on MAC addresses?",
+      "options": ["Router", "Hub", "Repeater", "Switch"],
+      "correctIndex": 3,
+      "explanation": "A switch learns MAC addresses and forwards frames only to the correct port (Layer 2). Hubs and repeaters are Physical layer devices, and routers work at the Network layer using IP addresses."
+    },
+    {
+      "id": "CN-008",
+      "category": "cn",
+      "difficulty": "easy",
+      "question": "What does ARP (Address Resolution Protocol) do?",
+      "options": [
+        "Maps a MAC address to an IP address",
+        "Maps an IP address to a MAC address",
+        "Maps a domain name to an IP address",
+        "Maps a port number to a process"
+      ],
+      "correctIndex": 1,
+      "explanation": "ARP finds the MAC (hardware) address of a host on the local network when its IPv4 address is known, so frames can be delivered on the link."
+    },
+    {
+      "id": "CN-009",
+      "category": "cn",
+      "difficulty": "medium",
+      "question": "What is the correct order of segments in the TCP three-way handshake?",
+      "options": ["SYN, SYN-ACK, ACK", "SYN, ACK, SYN-ACK", "ACK, SYN, SYN-ACK", "SYN-ACK, SYN, ACK"],
+      "correctIndex": 0,
+      "explanation": "The client sends SYN, the server replies with SYN-ACK, and the client confirms with ACK. After this the connection is established and data can flow."
+    },
+    {
+      "id": "CN-010",
+      "category": "cn",
+      "difficulty": "easy",
+      "question": "Which protocol is primarily used to send emails from a client to a mail server and between mail servers?",
+      "options": ["POP3", "IMAP", "SMTP", "SNMP"],
+      "correctIndex": 2,
+      "explanation": "SMTP (Simple Mail Transfer Protocol) is used to send and relay email. POP3 and IMAP are used to retrieve email, and SNMP is for network device management."
+    },
+    {
+      "id": "PR-001",
+      "category": "programming",
+      "difficulty": "easy",
+      "question": "What is the worst-case time complexity of binary search on a sorted array of n elements?",
+      "options": ["O(n)", "O(log n)", "O(n log n)", "O(1)"],
+      "correctIndex": 1,
+      "explanation": "Each comparison halves the search space, so at most about log2(n) steps are needed. Binary search therefore runs in O(log n) time."
+    },
+    {
+      "id": "PR-002",
+      "category": "programming",
+      "difficulty": "easy",
+      "question": "Which data structure follows the LIFO (Last In, First Out) principle?",
+      "options": ["Queue", "Heap", "Stack", "Graph"],
+      "correctIndex": 2,
+      "explanation": "In a stack, the last element pushed is the first one popped. Queues follow FIFO (First In, First Out)."
+    },
+    {
+      "id": "PR-003",
+      "category": "programming",
+      "difficulty": "medium",
+      "question": "What is printed by the following C code?\n\nint x = 5;\nprintf(\"%d\", x++ + 1);",
+      "options": ["5", "6", "7", "Undefined behaviour"],
+      "correctIndex": 1,
+      "explanation": "The post-increment x++ yields the current value 5 and then increments x to 6. So the expression is 5 + 1 = 6. The behaviour is well defined because x is modified only once."
+    },
+    {
+      "id": "PR-004",
+      "category": "programming",
+      "difficulty": "medium",
+      "question": "What is the worst-case time complexity of QuickSort?",
+      "options": ["O(n log n)", "O(n)", "O(n^2)", "O(log n)"],
+      "correctIndex": 2,
+      "explanation": "QuickSort degrades to O(n^2) when the pivot is consistently the smallest or largest element, for example on already-sorted input with a naive pivot choice. Its average case is O(n log n)."
+    },
+    {
+      "id": "PR-005",
+      "category": "programming",
+      "difficulty": "easy",
+      "question": "In Java, which keyword prevents a class from being inherited?",
+      "options": ["abstract", "static", "private", "final"],
+      "correctIndex": 3,
+      "explanation": "A class declared final cannot be subclassed (for example, java.lang.String). An abstract class, in contrast, is meant to be extended."
+    },
+    {
+      "id": "PR-006",
+      "category": "programming",
+      "difficulty": "easy",
+      "question": "Which OOP concept allows the same method call to behave differently depending on the object that receives it?",
+      "options": ["Polymorphism", "Encapsulation", "Abstraction", "Composition"],
+      "correctIndex": 0,
+      "explanation": "Polymorphism lets objects of different classes respond to the same message in their own way, typically through method overriding (runtime) or overloading (compile time)."
+    },
+    {
+      "id": "PR-007",
+      "category": "programming",
+      "difficulty": "easy",
+      "question": "What is the output of the following Python code?\n\nprint(len([1, [2, 3], 4]))",
+      "options": ["4", "3", "2", "An error is raised"],
+      "correctIndex": 1,
+      "explanation": "The outer list has three elements: 1, the nested list [2, 3], and 4. len() counts only top-level elements, so it prints 3."
+    },
+    {
+      "id": "PR-008",
+      "category": "programming",
+      "difficulty": "medium",
+      "question": "Which data structure is typically used to implement Breadth-First Search (BFS) on a graph?",
+      "options": ["Queue", "Stack", "Priority queue", "Hash table"],
+      "correctIndex": 0,
+      "explanation": "BFS explores vertices level by level, so it uses a FIFO queue. Depth-First Search (DFS) uses a stack (or recursion)."
+    },
+    {
+      "id": "PR-009",
+      "category": "programming",
+      "difficulty": "easy",
+      "question": "What is the output of the following Python 3 code?\n\nprint(7 // 2)",
+      "options": ["3.5", "4", "3", "3.0"],
+      "correctIndex": 2,
+      "explanation": "The // operator performs floor division. With two integers it returns an integer: 7 // 2 = 3. Using 7 / 2 would give 3.5."
+    },
+    {
+      "id": "PR-010",
+      "category": "programming",
+      "difficulty": "medium",
+      "question": "In JavaScript, what does the expression typeof null evaluate to?",
+      "options": ["\"object\"", "\"null\"", "\"undefined\"", "\"boolean\""],
+      "correctIndex": 0,
+      "explanation": "typeof null returns \"object\". This is a long-standing quirk from the first version of JavaScript that was kept for backward compatibility."
+    }
+  ]
+}
