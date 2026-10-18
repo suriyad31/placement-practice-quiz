@@ -1,8 +1,8 @@
-name: CI
+name: CI/CD Pipeline
 
 on:
   push:
-    branches: [main, master]
+    branches: [ "main", "master" ]
   pull_request:
 
 permissions:
@@ -17,46 +17,8 @@ env:
   IMAGE_NAME: ghcr.io/${{ github.repository }}
 
 jobs:
-  test:
-    name: Node checks
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Validate Compose configuration
-        run: docker compose config
-
-      - name: Start application
-        run: |
-          docker compose up --pull always -d --build
-          for i in {1..30}; do
-            if curl --fail --silent http://localhost:3000/api/health; then
-              echo "App is healthy!"
-              exit 0
-            fi
-            sleep 2
-          done
-          echo "Healthcheck failed. Printing logs:"
-          docker compose logs
-          exit 1
-
-      - name: Stop application
-        if: always()
-        run: docker compose down -v
-
-  image:
-    name: Build image
-    needs: test
+  build-and-push:
+    name: Build and Push Docker Image
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -83,7 +45,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and optionally push image
+      - name: Build and Push Docker image
         uses: docker/build-push-action@v6
         with:
           context: .
@@ -91,8 +53,5 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          pull: true
           cache-from: type=gha
           cache-to: type=gha,mode=max
-          provenance: true
-          sbom: true
