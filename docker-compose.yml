@@ -1,0 +1,48 @@
+services:
+  quiz:
+    build: .
+    container_name: placement-quiz
+    ports:
+      - "3000:3000"
+    environment:
+      PORT: 3000
+      QUIZ_DURATION_MINUTES: 10
+      # Only set NODE_ENV=production when the site is served over HTTPS
+      # (the app then marks login cookies "Secure", which breaks plain-http logins).
+      # NODE_ENV: production
+    volumes:
+      - quiz-data:/app/data   # keeps the SQLite database across restarts/rebuilds
+    restart: unless-stopped
+    networks:
+      - monitoring-network
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    restart: unless-stopped
+    networks:
+      - monitoring-network
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3001:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    depends_on:
+      - prometheus
+    restart: unless-stopped
+    networks:
+      - monitoring-network
+
+volumes:
+  quiz-data:
+
+networks:
+  monitoring-network:
+    driver: bridge

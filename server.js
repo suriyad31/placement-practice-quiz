@@ -746,3 +746,18 @@ server.on('error', (error) => {
   }
   process.exit(1);
 });
+// Use 'promClient' instead of 'client' to prevent variable shadowing
+const promClient = require('prom-client');
+
+// Collect default metrics (CPU, Memory, Event Loop delay)
+promClient.collectDefaultMetrics({ timeout: 5000 });
+
+// Expose /metrics endpoint for Prometheus
+app.get('/metrics', async (req, res) => {
+  try {
+    res.set('Content-Type', promClient.register.contentType);
+    res.end(await promClient.register.metrics());
+  } catch (ex) {
+    res.status(500).end(ex);
+  }
+});
